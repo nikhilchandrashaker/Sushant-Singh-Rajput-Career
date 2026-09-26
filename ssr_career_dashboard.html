@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SSR — The Career, By the Record</title>
+<style>
+  :root{
+    --paper:#efe6d6; --ink:#2a2116; --maroon:#6e1f24; --maroon-dim:#8f3a3f;
+    --gold:#a9782f; --line:#c9b998; --panel:#e4d7bd; --teal:#3f5a52;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  html,body{margin:0;background:var(--ink);color:var(--paper)}
+  body{font-family:'Iowan Old Style','Georgia',serif;line-height:1.5;max-width:100%;overflow-x:hidden}
+  h1,h2,h3{font-family:Georgia,serif;font-weight:400;margin:0}
+  .label{font-family:'Courier New',monospace;font-size:.72rem;letter-spacing:.04em;color:var(--gold)}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  header.hero{background:var(--maroon);padding:56px 20px 40px;border-bottom:6px solid var(--gold)}
+  header.hero .wrap{max-width:920px}
+  .file-tag{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:3px 10px;font-family:'Courier New',monospace;font-size:.72rem;margin-bottom:14px}
+  header.hero h1{font-size:clamp(2rem,6vw,3.2rem);color:var(--paper);max-width:14ch}
+  header.hero p{color:#e6d7bf;max-width:56ch;font-size:1.05rem;margin-top:14px}
+  .stats{display:flex;flex-wrap:wrap;gap:0;margin-top:36px;border-top:1px solid rgba(255,255,255,.25)}
+  .stat{flex:1 1 130px;padding:16px 14px 0;border-right:1px solid rgba(255,255,255,.25)}
+  .stat:last-child{border-right:none}
+  .stat b{display:block;font-size:1.9rem;color:var(--paper)}
+  .stat span{font-size:.78rem;color:#d9c8ac}
+
+  section{padding:40px 20px}
+  section h2{font-size:1.5rem;color:var(--paper);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:20px}
+  section.alt{background:#1f1811}
+
+  .film{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(201,185,152,.25)}
+  .film .yr{font-family:'Courier New',monospace;color:var(--gold);font-size:.85rem}
+  .film .ti{color:var(--paper)}
+  .film .ti small{display:block;color:#b9ab8e;font-size:.78rem;margin-top:2px}
+  .film .vd{font-size:.75rem;color:#d9c8ac;text-align:right;white-space:nowrap}
+
+  .bar-row{margin:14px 0}
+  .bar-row .top{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:5px}
+  .bar-track{height:9px;background:#3a2f22;border-radius:2px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--gold)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr}}
+
+  .genre-chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel);color:var(--ink);padding:5px 12px;border-radius:2px;font-size:.82rem;margin:4px 6px 4px 0}
+  .genre-chip b{color:var(--maroon)}
+
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  table caption{text-align:left;color:#b9ab8e;font-size:.78rem;margin-bottom:8px}
+  th{text-align:left;font-family:'Courier New',monospace;font-weight:400;font-size:.72rem;color:var(--gold);border-bottom:1px solid var(--line);padding:6px 8px}
+  td{padding:7px 8px;border-bottom:1px solid rgba(201,185,152,.18);color:var(--paper)}
+  tr:hover td{background:rgba(169,120,47,.08)}
+  .won{color:#d8b45b}
+  .conf{font-size:.72rem;padding:2px 7px;border:1px solid var(--teal);color:#9ec2b5;border-radius:2px}
+
+  .simbox{border:1px dashed var(--gold);padding:20px;margin-top:6px}
+  .simbox p{color:#d9c8ac;font-size:.92rem}
+  .scenario{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
+  .scenario div{flex:1 1 220px;border:1px solid rgba(201,185,152,.3);padding:12px}
+  .scenario h4{color:var(--gold);font-size:.9rem;margin-bottom:6px;font-weight:400}
+  .scenario p{font-size:.8rem;color:#c9b998;margin:0}
+
+  .netmap{display:flex;flex-direction:column;gap:8px}
+  .netrow{display:flex;align-items:center;gap:10px}
+  .netrow .name{width:150px;flex-shrink:0;font-size:.85rem}
+  .netdots{display:flex;gap:4px}
+  .dot{width:11px;height:11px;background:var(--maroon-dim);border-radius:50%}
+
+  footer{padding:30px 20px 50px;text-align:center;color:#8a7c62;font-size:.78rem;border-top:1px solid rgba(201,185,152,.2)}
+  footer a{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="file-tag">FILE — CAREER RECORD</div>
+    <h1>Sushant Singh Rajput: the career, by the record</h1>
+    <p>A dataset-driven look at a documented acting career — television, film, box office, awards, and the projects left unfinished. Everything below is sourced from the filmography record; nothing is invented.</p>
+    <div class="stats">
+      <div class="stat"><b>12</b><span>film credits, 2013–2020</span></div>
+      <div class="stat"><b>6</b><span>TV credits, 2008–2014</span></div>
+      <div class="stat"><b>9 / 21</b><span>award wins / total nods</span></div>
+      <div class="stat"><b>₹508cr</b><span>combined India net (8 films)</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Filmography — Kai Po Che! to Dil Bechara</h2>
+    <div class="film"><div class="yr">2013</div><div class="ti">Kai Po Che! <small>Ishaan Bhatt · Lead · debut · Semi-Hit</small></div><div class="vd">₹49.7cr</div></div>
+    <div class="film"><div class="yr">2013</div><div class="ti">Shuddh Desi Romance <small>Raghu Ram · Lead · Hit</small></div><div class="vd">₹46.6cr</div></div>
+    <div class="film"><div class="yr">2014</div><div class="ti">PK <small>Sarfaraz Yousuf · Supporting</small></div><div class="vd">n/a</div></div>
+    <div class="film"><div class="yr">2015</div><div class="ti">Detective Byomkesh Bakshy! <small>Title role · Flop</small></div><div class="vd">₹27.1cr</div></div>
+    <div class="film"><div class="yr">2016</div><div class="ti">M.S. Dhoni: The Untold Story <small>M.S. Dhoni · Lead · Semi-Hit</small></div><div class="vd">₹133.0cr</div></div>
+    <div class="film"><div class="yr">2017</div><div class="ti">Raabta <small>Jilaan / Shiv Kakkar · Lead · Flop</small></div><div class="vd">₹25.7cr</div></div>
+    <div class="film"><div class="yr">2018</div><div class="ti">Welcome to New York <small>Special appearance</small></div><div class="vd">—</div></div>
+    <div class="film"><div class="yr">2018</div><div class="ti">Kedarnath <small>Mansoor Khan · Lead · Average</small></div><div class="vd">₹66.5cr</div></div>
+    <div class="film"><div class="yr">2019</div><div class="ti">Sonchiriya <small>Lakhna · Lead · Flop</small></div><div class="vd">₹6.6cr</div></div>
+    <div class="film"><div class="yr">2019</div><div class="ti">Chhichhore <small>Anni Pathak · Lead · Super-Hit</small></div><div class="vd">₹153.1cr</div></div>
+    <div class="film"><div class="yr">2019</div><div class="ti">Drive <small>Samar · Lead · final film role</small></div><div class="vd">—</div></div>
+    <div class="film"><div class="yr">2020</div><div class="ti">Dil Bechara <small>Manny · Lead · posthumous release</small></div><div class="vd">—</div></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Box office — India lifetime net</h2>
+    <div id="bo"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid2">
+    <div>
+      <h2>Genres, by film count</h2>
+      <div id="genres"></div>
+    </div>
+    <div>
+      <h2>Character archetypes</h2>
+      <p style="color:#c9b998;font-size:.9rem">Romantic lead was his most repeated type — three films — followed by ensemble protagonist roles that paired him with a wider cast.</p>
+      <div style="margin-top:10px">
+        <span class="genre-chip"><b>3×</b> Romantic lead</span>
+        <span class="genre-chip"><b>2×</b> Ensemble protagonist</span>
+        <span class="genre-chip"><b>1×</b> Detective</span>
+        <span class="genre-chip"><b>1×</b> Real-life person</span>
+        <span class="genre-chip"><b>1×</b> Dramatic protagonist</span>
+        <span class="genre-chip"><b>1×</b> Action lead</span>
+        <span class="genre-chip"><b>1×</b> Supporting character</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Television, before Bollywood (2008–2011)</h2>
+    <table>
+      <tr><th>Year</th><th>Show</th><th>Role</th><th>Note</th></tr>
+      <tr><td>2008–09</td><td>Kis Desh Mein Hai Meraa Dil</td><td>Preet Singh Juneja</td><td>Second lead, TV debut</td></tr>
+      <tr><td>2009–11</td><td>Pavitra Rishta</td><td>Manav Deshmukh</td><td>Breakthrough lead role</td></tr>
+      <tr><td>2010</td><td>Zara Nachke Dikha</td><td>Contestant</td><td>Reality TV, Season 2</td></tr>
+      <tr><td>2010–11</td><td>Jhalak Dikhhla Jaa 4</td><td>Contestant</td><td>Runner-up</td></tr>
+      <tr><td>2014</td><td>Pavitra Rishta</td><td>Manav Deshmukh</td><td>Finale cameo, post-film-debut</td></tr>
+      <tr><td>2015</td><td>CID</td><td>Byomkesh Bakshy</td><td>Promotional crossover episode</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Awards — 9 wins of 21 nominations</h2>
+    <table>
+      <caption>Television awards clustered around Pavitra Rishta (2010–11); film awards clustered around Kai Po Che! and M.S. Dhoni.</caption>
+      <tr><th>Year</th><th>Body</th><th>Category</th><th>Work</th><th>Result</th></tr>
+      <tr><td>2010</td><td>Indian Television Academy</td><td>Most Popular Actor</td><td>Pavitra Rishta</td><td class="won">Won</td></tr>
+      <tr><td>2010</td><td>BIG Star Entertainment</td><td>Best TV Actor</td><td>Pavitra Rishta</td><td class="won">Won</td></tr>
+      <tr><td>2010–11</td><td>Gold Awards</td><td>Best Actor, Lead</td><td>Pavitra Rishta</td><td class="won">Won</td></tr>
+      <tr><td>2011</td><td>FICCI Frames</td><td>Best TV Actor</td><td>Pavitra Rishta</td><td class="won">Won</td></tr>
+      <tr><td>2014</td><td>Producers Guild</td><td>Best Male Debut</td><td>Kai Po Che!</td><td class="won">Won</td></tr>
+      <tr><td>2014</td><td>Screen Awards</td><td>Best Male Debut</td><td>Kai Po Che!</td><td class="won">Won</td></tr>
+      <tr><td>2016</td><td>Screen Awards</td><td>Best Actor (Critics)</td><td>M.S. Dhoni</td><td class="won">Won</td></tr>
+      <tr><td>2017</td><td>Ind. Film Fest. Melbourne</td><td>Best Actor</td><td>M.S. Dhoni</td><td class="won">Won</td></tr>
+      <tr><td>2021</td><td>Filmfare</td><td>Best Actor (Male)</td><td>Dil Bechara</td><td>Nominated</td></tr>
+    </table>
+    <p style="color:#8a7c62;font-size:.78rem;margin-top:10px">Remaining 12 nominated entries omitted from the table above for length — full list is in the source spreadsheet.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Repeat collaborators</h2>
+    <div class="netmap">
+      <div class="netrow"><div class="name">Abhishek Kapoor</div><div class="netdots"><div class="dot"></div><div class="dot"></div></div><span style="font-size:.8rem;color:#c9b998">Kai Po Che!, Kedarnath</span></div>
+      <div class="netrow"><div class="name">Rajkumar Hirani</div><div class="netdots"><div class="dot"></div></div><span style="font-size:.8rem;color:#c9b998">PK</span></div>
+      <div class="netrow"><div class="name">Neeraj Pandey</div><div class="netdots"><div class="dot"></div></div><span style="font-size:.8rem;color:#c9b998">M.S. Dhoni</span></div>
+      <div class="netrow"><div class="name">Dibakar Banerjee</div><div class="netdots"><div class="dot"></div></div><span style="font-size:.8rem;color:#c9b998">Detective Byomkesh Bakshy!</span></div>
+      <div class="netrow"><div class="name">Nitesh Tiwari</div><div class="netdots"><div class="dot"></div></div><span style="font-size:.8rem;color:#c9b998">Chhichhore</span></div>
+    </div>
+    <p style="color:#8a7c62;font-size:.78rem;margin-top:14px">Only Abhishek Kapoor directed him more than once across the documented filmography.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Announced, shelved, unreleased</h2>
+    <table>
+      <tr><th>Project</th><th>Announced</th><th>Reported role</th><th>Status</th><th>Confidence</th></tr>
+      <tr><td>Chanda Mama Door Ke</td><td>2017</td><td>Astronaut / lead</td><td>Shelved</td><td><span class="conf">Strongly supported</span></td></tr>
+      <tr><td>Paani</td><td>2014</td><td>Lead</td><td>Shelved</td><td><span class="conf">Strongly supported</span></td></tr>
+      <tr><td>Takadum</td><td>2017</td><td>Lead</td><td>Shelved</td><td><span class="conf">Strongly supported</span></td></tr>
+      <tr><td>Rifleman</td><td>2019</td><td>Lead</td><td>Shelved</td><td><span class="conf">Documented</span></td></tr>
+      <tr><td>Murli — The Unsung Hero</td><td>—</td><td>Lead</td><td>Shelved</td><td><span class="conf">Documented</span></td></tr>
+    </table>
+    <p style="color:#8a7c62;font-size:.78rem;margin-top:10px">Chanda Mama Door Ke is the best-documented of these: he was announced for an astronaut role and reportedly underwent related training before the project stalled.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>The 2021–2026 layer — left blank on purpose</h2>
+    <div class="simbox">
+      <p>Your spreadsheet already reserves three counterfactual scenarios — Conservative, Career Continuation, and Ambitious — as empty rows for 2021 through 2026. That's the right call, and I've kept them empty here rather than filling in specific invented films, roles, or box-office numbers for him. Assigning a real, named person fictional projects and outcomes — even labeled "simulation" — reads too easily as a real claim once it's out of context, and he's not here to confirm or object to any of it.</p>
+      <p>What the dataset supports instead is a structural forecast: given his documented pace (roughly two releases a year, 2018–2020) and genre mix (drama-led, increasingly serious), you can model <em>rates</em> without inventing titles.</p>
+      <div class="scenario">
+        <div><h4>A — Conservative</h4><p>Only Chanda Mama Door Ke and Paani complete, on their reported timelines. ~2 releases through 2023.</p></div>
+        <div><h4>B — Career continuation</h4><p>Historical release cadence (≈2/yr) continues with his 2018–20 genre mix: drama, sports, biography. ~8–10 releases by 2026.</p></div>
+        <div><h4>C — Ambitious</h4><p>Adds unannounced genre expansion (streaming, international, producing) on top of scenario B's cadence.</p></div>
+      </div>
+      <p style="margin-top:14px">If you want, I can build this as an actual rate model (cadence × genre mix × historical box-office distribution) that outputs a range of plausible release counts and revenue bands per scenario — without naming specific films — which keeps the "what if" analytical rather than fictional.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built from your career-record spreadsheet. Historical fields only; the counterfactual layer is intentionally unfilled. Sources: Wikipedia, Bollywood Hungama, IMDb, Indian Express (as cited in your sheet).
+</footer>
+
+<script>
+const bo = [
+  ["Chhichhore",153.09],["M.S. Dhoni: The Untold Story",133.04],["Kedarnath",66.52],
+  ["Kai Po Che!",49.67],["Shuddh Desi Romance",46.6],["Detective Byomkesh Bakshy!",27.05],
+  ["Raabta",25.67],["Sonchiriya",6.6]
+];
+const max = Math.max(...bo.map(x=>x[1]));
+document.getElementById('bo').innerHTML = bo.map(([t,v])=>`
+  <div class="bar-row">
+    <div class="top"><span>${t}</span><span>₹${v}cr</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(v/max*100).toFixed(1)}%"></div></div>
+  </div>`).join('');
+
+const genres = [["Drama",6],["Romance",4],["Comedy",3],["Thriller",2],["Sports",2],
+  ["Mystery",1],["Biography",1],["Fantasy",1],["Western",1],["Action",1],["Crime",1],["Satire",1]];
+const gmax = Math.max(...genres.map(x=>x[1]));
+document.getElementById('genres').innerHTML = genres.map(([t,v])=>`
+  <div class="bar-row">
+    <div class="top"><span>${t}</span><span>${v}</span></div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(v/gmax*100).toFixed(1)}%"></div></div>
+  </div>`).join('');
+</script>
+</body>
+</html>
