@@ -1,0 +1,10 @@
+box_id,title,release_year,opening_day_inr_crore,opening_weekend_inr_crore,week1_inr_crore,india_lifetime_net_inr_crore,verdict
+SSR_BO_001,Kai Po Che!,2013,4.5,18.1,29.5,49.67,Semi-Hit
+SSR_BO_002,Shuddh Desi Romance,2013,6.45,23.27,36.58,46.6,Hit
+SSR_BO_003,PK,2014,,,,,Not populated in actor-specific table
+SSR_BO_004,Detective Byomkesh Bakshy!,2015,4.2,14.06,19.87,27.05,Flop
+SSR_BO_005,M.S. Dhoni: The Untold Story,2016,21.3,66.0,94.13,133.04,Semi-Hit
+SSR_BO_006,Raabta,2017,5.61,15.93,23.51,25.67,Flop
+SSR_BO_007,Kedarnath,2018,6.85,27.0,40.85,66.52,Average
+SSR_BO_008,Sonchiriya,2019,1.2,4.6,6.55,6.6,Flop
+SSR_BO_009,Chhichhore,2019,7.32,35.98,68.83,153.09,Super-Hit

@@ -1,0 +1,5 @@
+rating_id,title,source,rating,rating_scale,date_collected,note
+SSR_RAT_001,Kai Po Che!,IMDb,7.8,10,2026-09-26,Time-varying rating; re-collect before final publication.
+SSR_RAT_002,M.S. Dhoni: The Untold Story,IMDb,8.0,10,2026-09-26,Time-varying rating; re-collect before final publication.
+SSR_RAT_003,Detective Byomkesh Bakshy!,IMDb,7.6,10,2026-09-26,Time-varying rating; re-collect before final publication.
+SSR_RAT_004,Dil Bechara,IMDb,8.3,10,2026-09-26,Time-varying rating; re-collect before final publication.

@@ -1,0 +1,13 @@
+film_id,title,release_year,release_date,medium,language,character,billing,genre,director,source_status,notes
+SSR_FILM_001,Kai Po Che!,2013,2013-02-22,Film,Hindi,"Ishaan ""Ish"" Bhatt",Lead,Drama;Sports,Abhishek Kapoor,Historical,Breakthrough/debut film role
+SSR_FILM_002,Shuddh Desi Romance,2013,2013-09-06,Film,Hindi,Raghu Ram,Lead,Romance;Comedy,Maneesh Sharma,Historical,Second film release
+SSR_FILM_003,PK,2014,2014-12-19,Film,Hindi,Sarfaraz Yousuf,Supporting,Comedy;Satire,Rajkumar Hirani,Historical,Supporting role
+SSR_FILM_004,Detective Byomkesh Bakshy!,2015,2015-04-03,Film,Hindi,Detective Byomkesh Bakshy,Lead,Mystery;Thriller,Dibakar Banerjee,Historical,Title role
+SSR_FILM_005,M.S. Dhoni: The Untold Story,2016,2016-09-30,Film,Hindi,Mahendra Singh Dhoni,Lead,Biography;Sports;Drama,Neeraj Pandey,Historical,Major career milestone
+SSR_FILM_006,Raabta,2017,2017-06-09,Film,Hindi,Jilaan / Shiv Kakkar,Lead,Romance;Fantasy,Dinesh Vijan,Historical,Lead role
+SSR_FILM_007,Welcome to New York,2018,2018-02-23,Film,Hindi,Himself,Special appearance,Comedy,Chakri Toleti,Historical,Special appearance
+SSR_FILM_008,Kedarnath,2018,2018-12-07,Film,Hindi,Mansoor Khan,Lead,Romance;Drama,Abhishek Kapoor,Historical,Lead role
+SSR_FILM_009,Sonchiriya,2019,2019-03-01,Film,Hindi,Lakhan Singh / Lakhna,Lead,Drama;Western,Abhishek Chaubey,Historical,Lead role
+SSR_FILM_010,Chhichhore,2019,2019-09-06,Film,Hindi,"Anirudh ""Anni"" Pathak",Lead,Comedy;Drama,Nitesh Tiwari,Historical,Major commercial release
+SSR_FILM_011,Drive,2019,2019-11-01,Film,Hindi,Samar,Lead,Action;Crime;Thriller,Tarun Mansukhani,Historical,Final film role
+SSR_FILM_012,Dil Bechara,2020,2020-07-24,Film,Hindi,"Immanuel ""Manny"" Rajkumar Jr.",Lead,Romance;Drama,Mukesh Chhabra,Historical,Posthumous release

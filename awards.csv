@@ -1,0 +1,21 @@
+award_id,year,award_body,category,work,result,medium
+SSR_AWD_001,2009,Indian Telly Awards,Most Popular Actor (Male),Pavitra Rishta,Nominated,Television
+SSR_AWD_002,2010,Indian Television Academy Awards,Most Popular Actor (Male),Pavitra Rishta,Won,Television
+SSR_AWD_003,2010,BIG Star Entertainment Awards,Best Television Actor (Male),Pavitra Rishta,Won,Television
+SSR_AWD_004,2010,Gold Awards,Best Actor in a Lead Role,Pavitra Rishta,Won,Television
+SSR_AWD_005,2011,Gold Awards,Best Actor in a Lead Role,Pavitra Rishta,Won,Television
+SSR_AWD_006,2011,FICCI Frames Excellence Honours,Best TV Actor (Male),Pavitra Rishta,Won,Television
+SSR_AWD_007,2014,Producers Guild Film Awards,Best Male Debut,Kai Po Che!,Won,Film
+SSR_AWD_008,2014,Producers Guild Film Awards,Best Actor in a Leading Role,Kai Po Che!,Nominated,Film
+SSR_AWD_009,2014,Screen Awards,Best Male Debut,Kai Po Che!,Won,Film
+SSR_AWD_010,2014,Zee Cine Awards,Best Male Debut,Kai Po Che!,Nominated,Film
+SSR_AWD_011,2014,IIFA Awards,Best Actor in a Leading Role,Kai Po Che!,Nominated,Film
+SSR_AWD_012,2014,Filmfare Awards,Best Debut Actor,Kai Po Che!,Nominated,Film
+SSR_AWD_013,2016,Screen Awards,Best Actor (Critics),M.S. Dhoni: The Untold Story,Won,Film
+SSR_AWD_014,2017,Filmfare Awards,Best Actor,M.S. Dhoni: The Untold Story,Nominated,Film
+SSR_AWD_015,2017,Zee Cine Awards,Best Actor – Male,M.S. Dhoni: The Untold Story,Nominated,Film
+SSR_AWD_016,2017,Stardust Awards,Best Actor,M.S. Dhoni: The Untold Story,Nominated,Film
+SSR_AWD_017,2017,International Indian Film Academy Awards,Best Actor (Male),M.S. Dhoni: The Untold Story,Nominated,Film
+SSR_AWD_018,2017,Indian Film Festival of Melbourne,Best Actor,M.S. Dhoni: The Untold Story,Won,Film
+SSR_AWD_019,2020,Screen Awards,Best Actor (Critics),Chhichhore,Nominated,Film
+SSR_AWD_020,2021,Filmfare Awards,Best Actor (Male),Dil Bechara,Nominated,Film
